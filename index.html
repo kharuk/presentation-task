@@ -45,11 +45,6 @@
 				<section>
 					<section>
 							<h2>Global scope</h2>
-							<pre class="fragment">
-								<code data-trim data-noescape>
-									var globalVariable = 'some value';
-								</code>
-							</pre>
               <pre class="fragment"><code data-trim data-noescape>
 var global = 'I am global variable!';
 function saySomething() {
@@ -63,7 +58,6 @@ saySomething(); // 'I am global variable!'
 						<article>
 							<p>Declaration with var</p>
 							<pre><code data-trim data-noescape>
-// Don't do this!
 var thing = 'something';
 var thing = 'something else';
 console.log(thing); //'something else'
@@ -79,23 +73,25 @@ let thing = 'something else'; // Error
 						</article>
 					</section>
 					<section>
+            <div class="fragment">
 						<p>Automatically Global</p>
-						<pre><code data-trim data-noescape>
+              <pre><code data-trim data-noescape>
 myFunction();
 // code here can use animal
 function myFunction() {
   animal = "Cat";
 }
-            </code></pre>
-					</section>
-					<section>
-						<p>Global Variables in HTML</p>
-						<p class="fragment">global = window</p>
-						<pre class="fragment"><code data-trim data-noescape>
+              </code></pre>
+            </div>
+            <div>
+              <p class="fragment">Global Variables in HTML</p>
+              <p class="fragment">global = window</p>
+              <pre class="fragment"><code data-trim data-noescape>
 var animal = "Cat";
 console.log(animal); //"Cat"
 console.log(window.animal); //"Cat"
-            </code></pre>
+              </code></pre>
+            </div>
 					</section>
 				</section>
 				<section>
@@ -121,22 +117,9 @@ console.log(animal); // ReferenceError: animal is not defined
             </code></pre>
 					</section>
 					<section>
-						<p>Functions do not have access to each other's scopes</p>
-						<pre class="fragment"><code data-trim data-noescape>
-function first () {
-  const firstFunctionVariable = `I'm part of first`;
-}
-
-function second () {
-  first();
-  console.log(firstFunctionVariable);
-  // Error, firstFunctionVariable is not defined
-}
-            </code></pre>
-					</section>
-					<section>
-						<p>Usage the same variable name in different functions</p>
-						<pre class="fragment"><code data-trim data-noescape>
+            <div class="fragment current-visible" style="position: absolute; width: 100%;">
+						  <p>Usage the same variable name in different functions</p>
+						  <pre><code data-trim data-noescape>
 function firstFunction(){
   var animal = 'Cat';
   console.log(animal); // Cat
@@ -146,20 +129,38 @@ function secondFunction(){
   var animal = 'Dog';
   console.log(animal); // Dog
 }
-            </code></pre>
+              </code></pre>
+            </div>
+            <div class="fragment current-visible" style="position: absolute; width: 100%;">
+              <p>Functions do not have access to each other's scopes</p>
+              <pre><code data-trim data-noescape>
+function firstFunction(){
+  var numberOfFunction = 1;
+  var animal = 'Cat';
+  console.log(animal); // Cat
+}
+
+function secondFunction(){
+  var animal = 'Dog';
+  console.log(animal); // Dog
+  firstFunction();
+  console.log(numberOfFunction); //Error
+}
+              </code></pre>
+            </div>
 					</section>
 					<section>
 						<p>Block scope</p>
 						<ul>
-							<li class="fragment">var <span class="fragment">NO</span></li>
-							<li class="fragment">let & const <span class="fragment">YES</span></li>
+							<li class="fragment">var <span class="fragment" style="color: red; white-space: pre;">    NO</span></li>
+							<li class="fragment">let & const <span class="fragment" style="color: green; white-space: pre;">   YES</span></li>
 						</ul>
 						<pre class="fragment"><code data-trim data-noescape>
 {
   const localVariable = 'I am local variable'
   console.log(localVariable) // 'I am local variable'
 }
-console.log(localVariable) // Error, hello is not defined
+console.log(localVariable) // Error, localVariable is not defined
             </code></pre>
 					</section>
 				</section>
@@ -255,14 +256,14 @@ function f() {
 if (('magic' in window) === false) {
   var magic = 'Something happened' ;
 }
-console.log(magic);
+console.log(magic); // undefined
             </code></pre>
 						<pre class="fragment"><code data-trim data-noescape>
 var magic
 if (('magic' in window) === false) {
   magic = 'Something happened';
 }
-console.log(magic);
+console.log(magic); // undefined
             </code></pre>
 					</section>
 				</section>
