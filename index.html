@@ -50,62 +50,52 @@
 									var globalVariable = 'some value';
 								</code>
 							</pre>
-							<pre class="fragment">
-								<code data-trim data-noescape>
+              <pre class="fragment"><code data-trim data-noescape>
 var global = 'I am global variable!';
 function saySomething() {
-	console.log(global);
+  console.log(global);
 }
 console.log(global); // 'I am global variable!'
 saySomething(); // 'I am global variable!'
-								</code>
-							</pre>
+          </code></pre>
 					</section>
 					<section>
 						<article>
 							<p>Declaration with var</p>
-							<pre>
-									<code data-trim data-noescape>
-										// Don't do this!
-										var thing = 'something';
-										var thing = 'something else'; // perhaps somewhere in your code
-										console.log(thing); // 'something else'
-									</code>
-							</pre>
+							<pre><code data-trim data-noescape>
+// Don't do this!
+var thing = 'something';
+var thing = 'something else';
+console.log(thing); //'something else'
+              </code></pre>
 						</article>
 						<article class="fragment">
 							<p>Declaration with let/const</p>
-							<pre>
-									<code data-trim data-noescape>
-										// Don't do this!
-										let thing = 'something';
-										let thing = 'something else'; // Error, thing has already been declared
-									</code>
-							</pre>
+							<pre><code data-trim data-noescape>
+// Don't do this!
+let thing = 'something';
+let thing = 'something else'; // Error
+              </code></pre>
 						</article>
 					</section>
 					<section>
 						<p>Automatically Global</p>
-						<pre>
-								<code data-trim data-noescape>
-									myFunction();
-									// code here can use animal
-									function myFunction() {
-									animal = "Cat";
-									}
-								</code>
-						</pre>
+						<pre><code data-trim data-noescape>
+myFunction();
+// code here can use animal
+function myFunction() {
+  animal = "Cat";
+}
+            </code></pre>
 					</section>
 					<section>
 						<p>Global Variables in HTML</p>
 						<p class="fragment">global = window</p>
-						<pre class="fragment">
-								<code data-trim data-noescape>
-									var animal = "Cat";
-									console.log(animal); //"Cat"
-									console.log(window.animal); //"Cat"
-								</code>
-						</pre>
+						<pre class="fragment"><code data-trim data-noescape>
+var animal = "Cat";
+console.log(animal); //"Cat"
+console.log(window.animal); //"Cat"
+            </code></pre>
 					</section>
 				</section>
 				<section>
@@ -120,48 +110,43 @@ saySomething(); // 'I am global variable!'
 					<section>
 						<p>Function scope</p>
 						<p class="fragment">Variables are accessible only within the function</p>
-						<pre class="fragment">
-								<code data-trim data-noescape>
-									function localScopeExample(){
-  									// LOCAL SCOPE
-  									var animal = 'Cat';
-										console.log(animal); // Cat
-									}
-									// GLOBAL SCOPE
-									console.log(animal); // Uncaught ReferenceError: animal is not defined
-								</code>
-						</pre>
+						<pre class="fragment"><code data-trim data-noescape>
+function localScopeExample(){
+  // LOCAL SCOPE
+  var animal = 'Cat';
+  console.log(animal); // Cat
+}
+// GLOBAL SCOPE
+console.log(animal); // ReferenceError: animal is not defined
+            </code></pre>
 					</section>
 					<section>
 						<p>Functions do not have access to each other's scopes</p>
-						<pre class="fragment">
-								<code data-trim data-noescape>
-									function first () {
-  									const firstFunctionVariable = `I'm part of first`;
-									}
+						<pre class="fragment"><code data-trim data-noescape>
+function first () {
+  const firstFunctionVariable = `I'm part of first`;
+}
 
-									function second () {
-  									first();
-  									console.log(firstFunctionVariable); // Error, firstFunctionVariable is not defined
-									}
-								</code>
-						</pre>
+function second () {
+  first();
+  console.log(firstFunctionVariable);
+  // Error, firstFunctionVariable is not defined
+}
+            </code></pre>
 					</section>
 					<section>
 						<p>Usage the same variable name in different functions</p>
-						<pre class="fragment">
-								<code data-trim data-noescape>
-									function firstFunction(){
-  									var animal = 'Cat';
-  									console.log(animal); // Cat
-									}
+						<pre class="fragment"><code data-trim data-noescape>
+function firstFunction(){
+  var animal = 'Cat';
+  console.log(animal); // Cat
+}
 
-									function secondFunction(){
-  									var animal = 'Dog';
-  									console.log(animal); // Dog
-									}
-								</code>
-						</pre>
+function secondFunction(){
+  var animal = 'Dog';
+  console.log(animal); // Dog
+}
+            </code></pre>
 					</section>
 					<section>
 						<p>Block scope</p>
@@ -169,48 +154,42 @@ saySomething(); // 'I am global variable!'
 							<li class="fragment">var <span class="fragment">NO</span></li>
 							<li class="fragment">let & const <span class="fragment">YES</span></li>
 						</ul>
-						<pre class="fragment">
-								<code data-trim data-noescape>
-									{
-  									const localVariable = 'I am local variable'
-  									console.log(localVariable) // 'I am local variable'
-									}
-									console.log(localVariable) // Error, hello is not defined
-								</code>
-						</pre>
+						<pre class="fragment"><code data-trim data-noescape>
+{
+  const localVariable = 'I am local variable'
+  console.log(localVariable) // 'I am local variable'
+}
+console.log(localVariable) // Error, hello is not defined
+            </code></pre>
 					</section>
 				</section>
 				<section>
 						<h2>Nested scopes</h2>
 						<p class="fragment">the ability of an inner function to access the scope of an outer function</p>
-						<pre class="fragment">
-							<code data-trim data-noescape>
-								function outerFunction () {
-  								const outer = `I'm the outer function!`
+						<pre class="fragment"><code data-trim data-noescape>
+function outerFunction () {
+  const outer = `I'm the outer function!`
 
-									function innerFunction() {
-										const inner = `I'm the inner function!`
-										console.log(outer) // I'm the outer function!
-									}
+  function innerFunction() {
+    const inner = `I'm the inner function!`
+    console.log(outer) // I'm the outer function!
+  }
 
-  								console.log(inner) // Error, inner is not defined
-								}
-							</code>
-						</pre>
+  console.log(inner) // Error, inner is not defined
+}
+            </code></pre>
 				</section>
 				<section>
 					<h2>Scope shadowing</h2>
 					<p class="fragment">the priority of the local variable over the global</p>
-					<pre class="fragment">
-						<code data-trim data-noescape>
-							var scope = "global";         // Declare a global variable
-							function checkscope() {
-    						var scope = "local";   // Declare a local variable with the same name
-    						return scope;         // Return the local value, not the global one
-							}
-							checkscope() //"local"
-						</code>
-					</pre>
+					<pre class="fragment"><code data-trim data-noescape>
+var scope = "global"; //Declare a global variable
+function checkscope() {
+  var scope = "local"; //Declare a local variable with the same name
+  return scope; //Return the local value, not the global one
+}
+checkscope() //"local"
+          </code></pre>
 				</section>
 				<section>
 					<section>
@@ -220,87 +199,71 @@ saySomething(); // 'I am global variable!'
 					<section>
 						<h2>Function hoisting</h2>
 						<div class="fragment" style="width: 100%; display: flex; align-items: flex-start;">
-							<pre class="fragment" style="width: 45%;">
-								<code data-trim data-noescape>
-									saySomething();
+							<pre class="fragment" style="width: 45%;"><code data-trim data-noescape>
+saySomething();
 
-									function saySomething () {
-										console.log('Hello!');
-									}
-								</code>
-							</pre>
-							<pre class="fragment" style="width: 45%;">
-								<code data-trim data-noescape>
-									function saySomething () {
-										console.log('Hello!');
-									}
+function saySomething () {
+  console.log('Hello!');
+}
+              </code></pre>
+							<pre class="fragment" style="width: 45%;"><code data-trim data-noescape>
+function saySomething () {
+  console.log('Hello!');
+}
 
-									saySomething();
-								</code>
-							</pre>
+saySomething();
+								</code></pre>
 						</div>
-						<pre class="fragment">
-							<code data-trim data-noescape>
-								saySomething(); // Error, saySomething is not defined
-								const saySomething = function () {
-  								console.log('Hello!');
-								};
-							</code>
-						</pre>
+						<pre class="fragment"><code data-trim data-noescape>
+saySomething(); // Error, saySomething is not defined
+const saySomething = function () {
+  console.log('Hello!');
+};
+            </code></pre>
 					</section>
 					<section>
 						<h2>Hoisting of variables</h2>
-						<pre class="fragment current-visible" style="position: absolute; width: 100%;">
-							<code data-trim data-noescape>
-								var scope = "global";
-								function f() {
-    							console.log(scope);
-    							var scope = "local";
-    							console.log(scope);
-								}
-							</code>
-						</pre>
-						<pre class="fragment current-visible" style="position: absolute; width: 100%;">
-							<code data-trim data-noescape>
-								var scope = "global";
-								function f() {
-    							console.log(scope);  // Prints "undefined", not "global"
-    							var scope = "local"; // Variable initialized here, but defined everywhere
-    							console.log(scope);  // Prints "local"
-								}
-							</code>
-						</pre>
+						<pre class="fragment current-visible" style="position: absolute; width: 100%;"><code data-trim data-noescape>
+var scope = "global";
+function f() {
+  console.log(scope);
+  var scope = "local";
+  console.log(scope);
+}
+            </code></pre>
+						<pre class="fragment current-visible" style="position: absolute; width: 100%;"><code data-trim data-noescape>
+var scope = "global";
+function f() {
+  console.log(scope);  // Prints "undefined", not "global"
+  var scope = "local"; // Variable initialized here, but defined everywhere
+  console.log(scope);  // Prints "local"
+}
+            </code></pre>
 						<p class="fragment">Hoisted of variable declaration, but no initialization</p>
-						<pre class="fragment">
-							<code data-trim data-noescape>
-								function f() {
-    							var scope;
-    							console.log(scope); //"undefined"
-    							scope = "local";
-    							console.log(scope); //"local"
-								}
-							</code>
-						</pre>
+						<pre class="fragment"><code data-trim data-noescape>
+function f() {
+  var scope;
+  console.log(scope); //"undefined"
+  scope = "local";
+  console.log(scope); //"local"
+}
+            </code></pre>
 					</section>
 					<section>
 						<p>Magic!</p>
-						<pre class="fragment">
-							<code data-trim data-noescape>
-								if (('magic' in window) === false) {
-  								var magic = 'Something happened' ;
-								}
-								console.log(magic);
-							</code>
-						</pre>
-						<pre class="fragment">
-							<code data-trim data-noescape>
-								var magic
-								if (('magic' in window) === false) {
-  								magic = 'Something happened';
-								}
-								console.log(magic);
-							</code>
-						</pre>
+						<pre class="fragment"><code data-trim data-noescape>
+if (('magic' in window) === false) {
+  var magic = 'Something happened' ;
+}
+console.log(magic);
+            </code></pre>
+						<pre class="fragment"><code data-trim data-noescape>
+var magic
+if (('magic' in window) === false) {
+  magic = 'Something happened';
+}
+console.log(magic);
+            </code></pre>
 					</section>
 				</section>
 				<section>
