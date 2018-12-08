@@ -30,7 +30,7 @@
 				<section>
 					<section>
 					<h2>Scope</h2>
-					<p>is a logical boundaries, that determines the accessibility of variables, objects, and functions
+					<p>is a logical boundary that determines the accessibility of variables, objects, and functions
 						from different parts of the code
 					</p>
 				</section>
@@ -46,12 +46,12 @@
 					<section>
 							<h2>Global scope</h2>
               <pre class="fragment"><code data-trim data-noescape>
-var global = 'I am global variable!';
+var global = 'I am a global variable!';
 function saySomething() {
   console.log(global);
 }
-console.log(global); // 'I am global variable!'
-saySomething(); // 'I am global variable!'
+console.log(global); // 'I am a global variable!'
+saySomething(); // 'I am a global variable!'
           </code></pre>
 					</section>
 					<section>
@@ -77,7 +77,7 @@ let thing = 'something else'; // Error
 						<p>Automatically Global</p>
               <pre><code data-trim data-noescape>
 myFunction();
-// code here can use animal
+// code here can use variable animal
 function myFunction() {
   animal = "Cat";
 }
@@ -132,7 +132,7 @@ function secondFunction(){
               </code></pre>
             </div>
             <div class="fragment current-visible" style="position: absolute; width: 100%;">
-              <p>Functions do not have access to each other's scopes</p>
+              <p>Functions do not have access to each others' scopes</p>
               <pre><code data-trim data-noescape>
 function firstFunction(){
   var numberOfFunction = 1;
@@ -157,8 +157,8 @@ function secondFunction(){
 						</ul>
 						<pre class="fragment"><code data-trim data-noescape>
 {
-  const localVariable = 'I am local variable'
-  console.log(localVariable) // 'I am local variable'
+  const localVariable = 'I am a local variable'
+  console.log(localVariable) // 'I am a local variable'
 }
 console.log(localVariable) // Error, localVariable is not defined
             </code></pre>
@@ -182,12 +182,12 @@ function outerFunction () {
 				</section>
 				<section>
 					<h2>Scope shadowing</h2>
-					<p class="fragment">the priority of the local variable over the global</p>
+					<p class="fragment">the priority of a local variable over a global variable</p>
 					<pre class="fragment"><code data-trim data-noescape>
 var scope = "global"; //Declare a global variable
 function checkscope() {
   var scope = "local"; //Declare a local variable with the same name
-  return scope; //Return the local value, not the global one
+  return scope; //Return a local value, not a global
 }
 checkscope() //"local"
           </code></pre>
@@ -240,7 +240,7 @@ function f() {
   console.log(scope);  // Prints "local"
 }
             </code></pre>
-						<p class="fragment">Hoisted of variable declaration, but no initialization</p>
+						<p class="fragment">Variable declaration hoisted, not their initialization</p>
 						<pre class="fragment"><code data-trim data-noescape>
 function f() {
   var scope;
